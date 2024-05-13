@@ -1,14 +1,12 @@
-ame: On Merge to Develop
+name: On Merge to Develop
 on:
   pull_request:
-    types: [closed]
+    types: [opened, reopened]
     branches: 'develop'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    if: github.event.pull_request.merged == true
 
     steps:
     - name: Checkout repository
