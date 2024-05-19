@@ -1,0 +1,20 @@
+name: On Merge to Develop
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: 
+    - 'main'
+    - 'develop'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # 추후 실행할 작업들을 명시
+    - name: Run your action
+      run: echo "This job's status is ${{ job.status }}."
+      
