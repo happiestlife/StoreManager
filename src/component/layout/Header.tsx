@@ -1,9 +1,16 @@
-import React from 'react';
+import { useNavigate } from "react-router-dom"
 import { Dropdown, Menu } from 'antd';
+import { Option } from "../../type/layout";
+import '../../css/index.css';
 
-interface Option {
-  value: string;
-  label: string;
+const HeaderLogo: React.FC = () => {
+  const navigator = useNavigate();
+
+  return (          
+    <div className='logo' onClick={() => navigator('/')}>
+      <a style={{color: 'white'}}>Jumping Park</a>
+    </div>
+  )
 }
 
 const TextSelectBox: React.FC<{ options: Option[] }> = ({ options }) => {
@@ -29,13 +36,14 @@ const options: Option[] = [
   { value: '3', label: 'Option 3' },
 ];
 
-// TODO 이름 변경
-const TestComp: React.FC = () => {
+const HeaderUser: React.FC = () => {
   return (
-    <div className="app">
-      <TextSelectBox options={options} />
+    <div className='header-user-name'>
+      <div className="app">
+        <TextSelectBox options={options} />
+      </div>
     </div>
   );
 };
 
-export default TestComp;
+export {HeaderLogo, HeaderUser};
