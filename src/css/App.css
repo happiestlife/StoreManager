@@ -36,3 +36,47 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+  display: flex;
+  font-size: 20px; 
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  margin-left: 'auto'
+}
+
+.header .header-user-name{
+  margin-right: 'auto'
+}
+
+.content-wrapper {
+  margin: 10px;
+  padding: 24px;
+  min-height: 360px;
+  color: black;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.content-title {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.table {
+  border: 5px black !important;
+}
+
+.table thead tr th{
+  background-color: lightgray !important;
+}
+
+.red {
+  background-color: lightyellow;
+}
