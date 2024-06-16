@@ -7,7 +7,7 @@ interface Option {
 
 interface ContentLayoutComp {
   title: string;
-  content: ReactNode;
+  content: JSX.Element;
   footer: ReactNode;
 }
 

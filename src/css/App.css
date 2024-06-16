@@ -55,7 +55,7 @@
 
 .content-wrapper {
   margin: 10px;
-  padding: 24px;
+  padding: 10px;
   min-height: 360px;
   color: black;
   background-color: white;
@@ -66,7 +66,19 @@
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+.content .sub-title {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 10px;
+}
+
+.contnet .sub-title .input {
+  padding: 5px;
+  margin: 10px;
 }
 
 .table {
@@ -77,6 +89,6 @@
   background-color: lightgray !important;
 }
 
-.red {
-  background-color: lightyellow;
+.table tr {
+  line-height: 15px !important;
 }
