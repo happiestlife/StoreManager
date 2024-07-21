@@ -9,7 +9,7 @@ const MainLayout: React.FC = () => {
   const [leftCollapsed, setLeftCollapsed] = useState(false);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className='main-layout' style={{ minHeight: '100vh' }}>
       <Header className='header'>
         <HeaderLogo/>
         <HeaderUser/> 

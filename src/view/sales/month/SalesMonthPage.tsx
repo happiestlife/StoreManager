@@ -2,10 +2,10 @@ import { DatePicker } from 'antd';
 import dayjs from 'dayjs'
 import { useState, SetStateAction, Dispatch } from 'react'
 
-import ContentLayout from '../../../layout/ContentLayout';
-import { ContentLayoutComp } from '../../../../type/layout';
+import ContentLayout from '../../../layout/main/ContentLayout';
+import { ContentLayoutComp } from '../../../type/layout';
 import SalesMonthTable from './SalesMonthTable';
-import { MonthDatepickerOnChange } from '../../../../type/common';
+import { MonthDatepickerOnChange } from '../../../type/common';
 
 const SalesMonth: React.FC = () => {
   const [selectedDate, setSelecteDate]: [Date, Dispatch<SetStateAction<Date>>] = useState(new Date());
@@ -23,7 +23,7 @@ const SalesMonth: React.FC = () => {
   </>);
 
   const contentComp: ContentLayoutComp = {
-    title: 'Sales Month',
+    title: <div>Sales Month</div>,
     content: content,
     footer: <h5>'Sales Month'</h5>,
   };

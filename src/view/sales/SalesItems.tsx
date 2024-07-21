@@ -1,5 +1,5 @@
 import type { TableProps } from 'antd';
-import { SalesMonthType } from '../../../type/expends';
+import { SalesMonthType } from '../../type/expends';
 
 const salesMonthCols: TableProps<SalesMonthType>['columns'] = [
   {

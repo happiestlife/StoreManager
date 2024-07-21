@@ -3,7 +3,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 
 import { salesMonthCols } from '../SalesItems';
-import { SalesMonthType } from '../../../../type/expends';
+import { SalesMonthType } from '../../../type/expends';
 
 const dayOfWeek: string[] = ["월", "화", "수", "목", "금", "토", "일"];
 let sales: SalesMonthType[] = [];
