@@ -45,5 +45,9 @@
   },
   "devDependencies": {
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "description": "기술 스택: React, TypeScript",
+  "main": "webpack.config.js",
+  "author": "",
+  "license": "ISC"
 }
