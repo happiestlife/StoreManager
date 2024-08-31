@@ -11,13 +11,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Run your action
-        run: echo "This job's status is ${{ job.status }}."
+      - name: Start deploy
+        run: echo "Start deploy..."
 
       - name: Checkout branch
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install dependencies and build
         run: yarn install && yarn build
         env:
           CI: false
@@ -32,12 +32,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
           
-      - name: 🚛 Upload to S3
+      - name: Upload zip file to S3
         run: aws s3 cp --region ap-northeast-2 ./storeManager_fe.zip s3://${{ secrets.S3_BUCKET_NAME }}/${{ secrets.S3_BUCKET_DIR_NAME }}/storeManager_fe.zip
          
-      - name: 🚀 Deploy to EC2 with CodeDeploy
+      - name: Deploy to EC2 with CodeDeploy
         run: aws deploy create-deployment
              --application-name codedeploy-app
              --deployment-config-name CodeDeployDefault.AllAtOnce
              --deployment-group-name ${{ secrets.DEPLOYMENT_GROUP_NAME }}
              --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},bundleType=zip,key=${{ secrets.S3_BUCKET_DIR_NAME }}/storeManager_fe.zip
+
+      - name: End deploy
+        run: echo "End deploy..."
