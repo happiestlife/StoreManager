@@ -28,21 +28,18 @@ jobs:
         run: zip -qq -r ./storeManager_fe.zip .
       
       - name: Access to AWS
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
           
       - name: Upload zip file to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: aws s3 cp --region ap-northeast-2 ./storeManager_fe.zip s3://${{ secrets.S3_BUCKET_NAME }}/${{ secrets.S3_BUCKET_DIR_NAME }}/storeManager_fe.zip
          
       - name: Deploy to EC2 with CodeDeploy
         run: aws deploy create-deployment
-             --application-name codedeploy-app
+             --application-name StoreManager_CodeDeploy
              --deployment-config-name CodeDeployDefault.AllAtOnce
              --deployment-group-name ${{ secrets.DEPLOYMENT_GROUP_NAME }}
              --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},bundleType=zip,key=${{ secrets.S3_BUCKET_DIR_NAME }}/storeManager_fe.zip
