@@ -19,7 +19,29 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v3
 
-      - name: Install dependencies and build
+      - name: Cache yarn modules
+        id: cache-yarn
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-yarn-modules
+        with:
+          # yarn cache files are stored in `~/.cache/yarn` on Linux/macOS
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - if: ${{ steps.cache-yarn.outputs.cache-hit != 'true' }}
+        name: List the state of yarn modules
+        continue-on-error: true
+        run: yarn list
+
+      - name: Install dependencies
+        run: yarn install
+      
+      - name: Build application
         run: yarn install && yarn build
         env:
           CI: false
