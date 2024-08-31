@@ -16,12 +16,12 @@ jobs:
 
       - name: Checkout branch
         uses: actions/checkout@v3
-      
-      - name: Create project zip file
-         run: zip -qq -r ./storeManager_fe.zip .
 
       - name: Install dependencies
         run: yarn build
+      
+      - name: Create project zip file
+         run: zip -qq -r ./storeManager_fe.zip .
       
       - name: Access to AWS
         uses: aws-actions/configure-aws-credentials@v2
