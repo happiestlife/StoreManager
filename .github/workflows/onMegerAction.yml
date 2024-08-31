@@ -1,9 +1,8 @@
 name: On Merge to Develop
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [closed]
     branches: 
-    - 'main'
     - 'develop'
 
 jobs:
@@ -17,4 +16,39 @@ jobs:
     # 추후 실행할 작업들을 명시
     - name: Run your action
       run: echo "This job's status is ${{ job.status }}."
+
+  deploy:
+    if: github.event.pull_request.merged == true
+    environment: develop
       
+    env:
+      ENV_PATH: .env
+      S3_BUCKET_DIR_NAME: production
+      DEPLOYMENT_GROUP_NAME: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+
+      - name: Make config folder
+        run: mkdir -p config
+      
+      - name: Create project zip file
+         run: zip -r ./$GITHUB_SHA.zip .
+      
+      - name: Access to AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+          
+      - name: 🚛 Upload to S3
+         run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{ secrets.S3_BUCKET_NAME }}/${{ secrets.S3_BUCKET_DIR_NAME }}/$GITHUB_SHA.zip
+         
+      - name: 🚀 Deploy to EC2 with CodeDeploy
+         run: aws deploy create-deployment
+             --application-name codedeploy-app
+             --deployment-config-name CodeDeployDefault.AllAtOnce
+             --deployment-group-name ${{ secrets.DEPLOYMENT_GROUP_NAME }}
+             --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},bundleType=zip,key=${{ secrets.S3_BUCKET_DIR_NAME }}/$GITHUB_SHA.zip
