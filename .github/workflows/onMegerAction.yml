@@ -6,35 +6,19 @@ on:
     - 'develop'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    # 추후 실행할 작업들을 명시
-    - name: Run your action
-      run: echo "This job's status is ${{ job.status }}."
-
   deploy:
     if: github.event.pull_request.merged == true
-    environment: develop
-      
-    env:
-      ENV_PATH: .env
-      S3_BUCKET_DIR_NAME: production
-      DEPLOYMENT_GROUP_NAME: production
+
     runs-on: ubuntu-latest
     steps:
+      - name: Run your action
+        run: echo "This job's status is ${{ job.status }}."
+
       - name: Checkout branch
         uses: actions/checkout@v3
-
-      - name: Make config folder
-        run: mkdir -p config
       
       - name: Create project zip file
-         run: zip -r ./${{ github.sha }}.zip .
+         run: zip -qq -r ./storeManager_fe.zip .
       
       - name: Access to AWS
         uses: aws-actions/configure-aws-credentials@v2
