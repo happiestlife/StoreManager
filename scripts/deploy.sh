@@ -2,8 +2,8 @@ echo "> StoreManager front deploy success!"
 echo "> Start StoreManager..."
 
 cd /home/ubuntu/store-manager-fe/
-npm install -g pm2
+# npm install -g pm2
 yarn install
-pm2 start yarn --name store-manager --cwd /home/ubuntu/store-manager-fe -- start
+pm2 start yarn --name store-manager -- start
 
-echo "> End Startiing StoreManager..."
+echo "> End Starting StoreManager..."
