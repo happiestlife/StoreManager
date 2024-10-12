@@ -1,15 +1,14 @@
 name: On Merge to Develop
-on: [push]
-# on:
-#   pull_request:
-#     types: [closed]
-#     branches: 
-#     - 'develop'
+on:
+  pull_request:
+    types: [closed]
+    branches: 
+    - 'develop'
 
 
 jobs:
   deploy:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
     steps:
