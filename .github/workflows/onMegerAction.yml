@@ -1,9 +1,10 @@
 name: On Merge to Develop
-on:
-  pull_request:
-    types: [closed]
-    branches: 
-    - 'develop'
+on: [push]
+# on:
+#   pull_request:
+#     types: [closed]
+#     branches: 
+#     - 'develop'
 
 
 jobs:
