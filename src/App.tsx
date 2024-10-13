@@ -1,4 +1,4 @@
-import AppRouter from "./router/AppRouter";
+import AppRouter from "./route/AppRouter";
 
 const App: React.FC = () => {   
   return (

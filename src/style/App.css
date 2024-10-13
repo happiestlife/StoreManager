@@ -1,0 +1,136 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Login */
+.login-section{
+  align-items: center;
+  display: flex;
+  background-image: url('/public/loginBackground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-section .container {
+  width: 40%;
+  min-width: 340px;
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(245, 245, 245, 0.7);
+}
+
+.login-section .container .header{
+
+}
+
+.login-section .container .header .description{
+  padding: 8px;
+  line-height: 1.5;
+}
+
+.login-section .container .content{
+  
+}
+
+.login-section .container .content .forgot-pw{
+  float: right;
+}
+
+.login-section .container .footer{
+  text-align: center;
+  width: 100%; 
+}
+
+
+/* Content Layout frames */
+.main-layout .header {
+  display: flex;
+  font-size: 20px; 
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-layout .header .logo {
+  margin-left: 'auto'
+}
+
+.main-layout .header .header-user-name{
+  margin-right: 'auto'
+}
+
+.main-layout .content-wrapper {
+  margin: 10px;
+  padding: 10px;
+  min-height: 360px;
+  color: black;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.main-layout .content-title {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.main-layout .content .sub-title {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 10px;
+}
+
+.main-layout .contnet .sub-title .input {
+  padding: 5px;
+  margin: 10px;
+}
+
+.main-layout .table {
+  border: 5px black !important;
+}
+
+.main-layout .table thead tr th{
+  background-color: lightgray !important;
+}
+
+.main-layout .table tr {
+  line-height: 15px !important;
+}
